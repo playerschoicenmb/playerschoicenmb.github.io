@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="icon" href="images/logo.png">
+<link rel="stylesheet" href="style.css">
+<title>Gallery | Player's Choice Myrtle Beach</title>
+<meta name="description" content="Videos and photos from inside Player's Choice in the Myrtle Beach Mall. Follow us on Instagram @playerschoicemb.">
+</head>
+<body data-page="gallery">
+<main>
+  <section class="hero">
+    <h1>GALLERY</h1>
+    <p class="sub">Follow us on Instagram! <a style="color:var(--red)" href="https://www.instagram.com/playerschoicemb/?hl=en" target="_blank" rel="noopener">@playerschoicemb</a></p>
+    <div class="press">SELECT A STAGE</div>
+  </section>
+
+  <!-- FEATURED FACEBOOK VIDEO -->
+  <section class="grid2">
+    <div class="fbwrap"><iframe title="Player's Choice video on Facebook" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D1030254847135983&show_text=false&width=560"></iframe></div>
+    <div class="panel yellow">
+      <h2>NOW SHOWING</h2>
+      <p>Straight from the Player's Choice Facebook page. New inventory, new machines, and everyday chaos at the counter.</p>
+      <a class="btn" href="https://www.facebook.com/watch/?v=1030254847135983" target="_blank" rel="noopener">Watch on Facebook</a>
+      <a class="btn cyan" href="https://www.facebook.com/PlayersChoiceMB/" target="_blank" rel="noopener">Follow Page</a>
+    </div>
+  </section>
+
+  <!-- PHOTO WALL -->
+  <section>
+    <h2 style="text-align:center">PHOTO MODE</h2>
+    <div class="photowall" id="photos"></div>
+  </section>
+
+  <!-- INSTAGRAM VIDEOS -->
+  <section>
+    <h2 style="text-align:center">INSTAGRAM VIDEOS</h2>
+    <p class="note" style="text-align:center;margin-bottom:20px">Click any video to watch it here.</p>
+    <div class="gal" id="gal"></div>
+    <p style="text-align:center;margin-top:28px"><a class="btn pink" href="https://www.instagram.com/playerschoicemb/?hl=en" target="_blank" rel="noopener">Load More on Instagram ▶</a></p>
+  </section>
+
+  <section class="panel pink" style="text-align:center">
+    <h2>CONTINUE? 10…9…8…</h2>
+    <p>New videos drop all the time. Follow along on every platform.</p>
+    <a class="btn pink" href="https://www.instagram.com/playerschoicemb/?hl=en" target="_blank" rel="noopener">Instagram</a>
+    <a class="btn" href="https://www.tiktok.com/@playerschoicemb" target="_blank" rel="noopener">TikTok</a>
+    <a class="btn red" href="https://www.youtube.com/@PlayersChoiceMB" target="_blank" rel="noopener">YouTube</a>
+    <a class="btn cyan" href="https://www.facebook.com/PlayersChoiceMB/" target="_blank" rel="noopener">Facebook</a>
+  </section>
+</main>
+
+<!-- LIGHTBOX (retro version of the Wix Instagram popup) -->
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Instagram post">
+  <div class="lb-box">
+    <div class="lb-media" id="lbMedia"></div>
+    <div class="lb-side">
+      <div class="lb-top"><span>📷 playerschoicemb</span><button id="lbClose" aria-label="Close">✕</button></div>
+      <div class="lb-nav"><button id="lbPrev" aria-label="Previous">◀</button><span id="lbCount"></span><button id="lbNext" aria-label="Next">▶</button></div>
+      <p class="lb-cap" id="lbCap"></p>
+      <div class="lb-date" id="lbDate"></div>
+      <a class="btn pink" id="lbLink" target="_blank" rel="noopener">Open on Instagram</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= EDIT HERE =================
+   PHOTOS: add any image in /images.
+   IG_POSTS: paste each Instagram post/reel link (copy from the "Share > Copy link" button).
+     url   -> https://www.instagram.com/reel/XXXXXXX/   (leave '' to link to the profile)
+     thumb -> optional image in /images (otherwise a retro placeholder is shown)
+================================================ */
+const PHOTOS = [
+  ['images/storefront.jpg','The Store'],
+  ['images/arcade-entrance.jpg','The Arcade · All Games 25¢'],
+  ['images/xmen-pinball.jpg','X-Men 6-Player + Pinball Row'],
+  ['images/simpsons-capcom.jpg','The Simpsons + Capcom Cabinet'],
+  ['images/spiderman-car.jpg','Spider-Man Car Kiddie Ride']
+];
+const PROFILE = 'https://www.instagram.com/playerschoicemb/?hl=en';
+const IG_POSTS = [
+  {url:'', thumb:'images/ig-250th.jpg', date:'July 2, 2026', cap:"Happy 250th, everyone! Washington would've wanted you to play more games."},
+  {url:'', cap:'Whatnot SUNDAY at 4pm EST!'},
+  {url:'', cap:'ROLAND: "Go attract new customers!"'},
+  {url:'', cap:'What you say to customers in the way'},
+  {url:'', cap:"When you need your manager but they're having a worse day"},
+  {url:'', cap:'Store opens at 10am. That one customer at 9:59am'},
+  {url:'', cap:'She never gets what she wants 😭'},
+  {url:'', cap:'How the nicest people look before you talk to them'},
+  {url:'', cap:'pov: a customer is extremely confused'},
+  {url:'', cap:'NEW MACHINE! Pokémon Catch · Wild arcade machine appeared!'},
+  {url:'', cap:'Trade values wall'},
+  {url:'', cap:'New arrivals at the counter'}
+];
+
+/* photo wall */
+document.getElementById('photos').innerHTML = PHOTOS.map(([src,cap],i) =>
+  `<figure class="ph ph${i}"><img src="${src}" alt="${cap}" loading="lazy"><figcaption>${cap}</figcaption></figure>`).join('');
+
+/* instagram grid */
+const embedUrl = u => { const m = u && u.match(/instagram\.com\/(p|reel|tv)\/([^/?#]+)/); return m ? `https://www.instagram.com/${m[1]}/${m[2]}/embed` : null; };
+const gal = document.getElementById('gal');
+gal.innerHTML = IG_POSTS.map((p,i) => `
+  <button class="tile${p.thumb?'':' empty'}" data-i="${i}" aria-label="${p.cap}">
+    ${p.thumb ? `<img src="${p.thumb}" alt="" loading="lazy">` : `<span class="ph-icon">▶<br><small>REEL ${String(i+1).padStart(2,'0')}</small></span>`}
+    <span class="play"></span><span class="cap">${p.cap}</span></button>`).join('');
+
+/* lightbox */
+const lb = document.getElementById('lb'); let cur = 0;
+function show(i){
+  cur = (i + IG_POSTS.length) % IG_POSTS.length; const p = IG_POSTS[cur], e = embedUrl(p.url);
+  document.getElementById('lbMedia').innerHTML = e
+    ? `<iframe src="${e}" title="Instagram video" allowfullscreen loading="lazy"></iframe>`
+    : (p.thumb ? `<img src="${p.thumb}" alt="">` : `<div class="lb-ph">▶<br>WATCH ON<br>INSTAGRAM</div>`);
+  document.getElementById('lbCap').textContent = p.cap;
+  document.getElementById('lbDate').textContent = p.date || '';
+  document.getElementById('lbCount').textContent = `${cur+1} / ${IG_POSTS.length}`;
+  document.getElementById('lbLink').href = p.url || PROFILE;
+  lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+}
+const close = () => { lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.getElementById('lbMedia').innerHTML=''; };
+gal.addEventListener('click', e => { const t = e.target.closest('.tile'); if (t) show(+t.dataset.i); });
+document.getElementById('lbPrev').onclick = () => show(cur-1);
+document.getElementById('lbNext').onclick = () => show(cur+1);
+document.getElementById('lbClose').onclick = close;
+lb.addEventListener('click', e => { if (e.target === lb) close(); });
+addEventListener('keydown', e => { if (!lb.classList.contains('open')) return;
+  if (e.key==='Escape') close(); if (e.key==='ArrowLeft') show(cur-1); if (e.key==='ArrowRight') show(cur+1); });
+</script>
+<script src="script.js"></script>
+</body>
+</html>
