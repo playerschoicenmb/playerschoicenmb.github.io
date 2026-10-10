@@ -158,7 +158,7 @@
       oldW=W;oldH=H;belt=document.createElement('canvas');belt.width=W;beltH=Math.max(1200,H*2);belt.height=beltH;
       const b=belt.getContext('2d'),lanes=Math.max(3,Math.floor(W/(W<520?120:150))),rowH=150,rows=Math.ceil(beltH/rowH);
       for(let row=0;row<rows;row++)for(let lane=0;lane<lanes;lane++){
-        if((row+lane)%2)continue;
+        if((row+lane)%3===2)continue;
         const k=(row*3+lane*5)%shapes.length,shape=shapes[k],pw=Math.max(...shape.map(r=>r.length))*S,ph=shape.length*S;
         const boxW=W/lanes,px=lane*boxW+(boxW-pw)/2,py=row*rowH+(rowH-ph)/2;
         shape.forEach((line,j)=>line.forEach((on,i)=>{if(!on)return;
@@ -172,7 +172,8 @@
     buildBelt();offset=110;
     return()=>{
       if(W!==oldW||H!==oldH)buildBelt();
-      x.fillStyle='#05040f';x.fillRect(0,0,W,H);offset=(offset+.72)%beltH;
+      x.fillStyle='#05040f';x.fillRect(0,0,W,H);offset=(offset-.72+beltH)%beltH;
+
       x.save();x.globalAlpha=.5;
       for(let y=-offset-beltH;y<H;y+=beltH)x.drawImage(belt,0,y);
       x.restore();
