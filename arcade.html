@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="style.css">
+<title>Arcade | Player's Choice Vintage Arcade & Pinball | Myrtle Beach Mall</title>
+<meta name="description" content="Wall-to-wall classic arcade games and pinball at Player's Choice in the Myrtle Beach Mall. Pac-Man, Galaga, Street Fighter 2, X-Men, TMNT, Stranger Things pinball and more.">
+</head>
+<body data-page="arcade">
+<main>
+  <section class="hero">
+    <p class="sub" style="color:var(--pink)">PLAYER'S CHOICE</p>
+    <h1>WARP ZONE<br>ARCADE</h1>
+    <p class="sub">ALL GAMES 25¢</p>
+    <div class="coin" style="margin:10px auto">25¢</div>
+    <div class="press">INSERT COIN</div>
+  </section>
+
+  <section class="grid2">
+    <div class="panel pink">
+      <h2>MORE ROOM TO PLAY!</h2>
+      <p>Good news, there's more room to play! After you take a look around the store, check out our arcade located next door with wall-to-wall games that are sure to keep you busy for hours.</p>
+      <p style="color:var(--yellow)">Our games are always changing! Make sure to visit often to see what's new!</p>
+      <a class="btn pink" href="#games">Check Out Our Games</a>
+    </div>
+    <div class="frame"><img src="arcade-entrance.jpg" alt="Arcade entrance with neon OPEN sign and Pong cabinet"><span class="tag">ALL ARCADES ARE 25¢ PER PLAY</span></div>
+  </section>
+
+  <section>
+    <h2 style="text-align:center">ON THE FLOOR RIGHT NOW</h2>
+    <div class="grid3">
+      <div class="frame"><img src="arcade%20machine%202.png" alt="X-Men 6-player cabinet next to a row of pinball machines" loading="lazy"><span class="tag">X-MEN 6P + PINBALL</span></div>
+      <div class="frame"><img src="arcade%20machine%203.png" alt="The Simpsons and Capcom arcade cabinets" loading="lazy"><span class="tag">SIMPSONS + CAPCOM</span></div>
+      <div class="frame"><img src="arcade-entrance.jpg" alt="Arcade entrance" loading="lazy"><span class="tag">THE WARP ZONE</span></div>
+    </div>
+  </section>
+
+  <section class="grid2">
+    <div class="fbwrap"><iframe title="Player's Choice arcade video on Facebook" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D1030254847135983&show_text=false&width=560"></iframe></div>
+    <div class="panel yellow" style="text-align:center">
+      <h2>⚡ NEW MACHINE! ⚡</h2>
+      <p class="sub" style="color:var(--yellow)">A WILD ARCADE MACHINE APPEARED!</p>
+      <p>Our games are always changing! Make sure to visit often to see what's new!</p>
+      <a class="btn" href="https://www.facebook.com/PlayersChoiceMB/" target="_blank" rel="noopener">More on Facebook</a>
+    </div>
+  </section>
+
+  <section class="grid2">
+    <div class="panel red">
+      <h2>FOR THE LITTLE PLAYERS</h2>
+      <p>Hop in the <b style="color:var(--yellow)">Spider-Man Car</b> kiddie ride, parked right inside Player's Choice.</p>
+      <a class="btn red" href="#games">See Full Game List</a>
+    </div>
+    <div class="frame"><img src="spiderman%20car.png" alt="Spider-Man car kiddie ride" loading="lazy"><span class="tag">SPIDER-MAN CAR · KIDDIE RIDE</span></div>
+  </section>
+
+
+  <section id="spotlight">
+    <h2 style="text-align:center">★ CABINET SPOTLIGHT ★</h2>
+    <div class="grid3" id="spots"></div>
+    <p class="note" style="text-align:center">Game info: <a style="color:var(--cyan)" href="https://www.arcade-museum.com/" target="_blank" rel="noopener">Museum of the Game / International Arcade Museum</a></p>
+  </section>
+
+  <section id="games" class="panel">
+    <h2>CHECK OUT OUR GAMES</h2>
+    <input id="search" type="search" placeholder="> SEARCH GAMES_" aria-label="Search games">
+    <div class="filters">
+      <button class="on" data-z="all">ALL</button>
+      <button data-z="main">MAIN STORE</button>
+      <button data-z="other">PINBALL &amp; OTHER</button>
+      <button data-z="warp">WARP ZONE</button>
+      <button data-z="pin">WARP PINBALL</button>
+    </div>
+    <div id="list"></div>
+    <p class="note">* The list of current arcades for play may change due to repairs or others coming in.<br>Last updated (June 2025)</p>
+  </section>
+</main>
+<script>
+const V = 'https://www.arcade-museum.com/Videogame/', P = 'https://www.arcade-museum.com/Pinball/';
+const Z = {
+  main:['MAIN STORE',[['Batman',V+'batman--raw'],['Daytona USA',V+'daytona-usa'],['Fast and Furious: Drift',V+'fast-and-the-furious-drift-the'],['Gauntlet Legends',V+'gauntlet-legends'],["Jojo's Venture",V+'jojos-venture'],['Jurassic Park 3',V+'jurassic-park-iii'],['Marvel vs Capcom 2',V+'marvel-vs-capcom-2-new-age-of-heroes'],['Mortal Kombat 2',V+'mortal-kombat-ii'],['Popeye',V+'popeye'],['Rampage World Tour',V+'rampage-world-tour'],['Star Wars Trilogy Arcade',V+'star-wars-trilogy-arcade'],['Street Fighter 2',V+'street-fighter-ii-the-world-warrior'],['Terminator 2: Judgment Day',V+'terminator-2-judgment-day'],['House of the Dead 2',V+'house-of-the-dead-2-the'],['TMNT: Turtles in Time',V+'teenage-mutant-ninja-turtles-turtles-in-time'],['X-Men (6 Player)',V+'x-men']]],
+  other:['PINBALL AND OTHER',[['Avatar',P+'avatar'],['Godzilla',P+'godzilla'],['Iron Maiden',P+'iron-maiden-legacy-of-the-beast'],['Jurassic Park',P+'jurassic-park'],['South Park',P+'south-park--sega--1999--16269'],['Stranger Things'],['Venom'],['Spider-Man Car (Kiddie Ride)','spiderman%20car.png']]],
+  warp:["PLAYER'S CHOICE WARP ZONE",[['1943',V+'1943-the-battle-of-midway'],['Altered Beast',V+'altered-beast'],['Arkanoid',V+'arkanoid'],['Asteroids',V+'asteroids'],['Baby Pac-Man',P+'baby-pac-man'],['Burger Time',V+'burgertime'],['Centipede',V+'centipede'],['Contra',V+'contra'],['Dig Dug',V+'dig-dug'],['Donkey Kong',V+'donkey-kong'],['Double Dragon',V+'double-dragon'],['Dr Mario',V+'dr-mario'],['Frogger',V+'frogger'],['Galaga',V+'galaga'],['Gauntlet',V+'gauntlet'],['Ghosts and Goblins',V+'ghosts-n-goblins'],['Ms Pac-Man',V+'ms-pac-man'],['Pac-Man',V+'pac-man'],['PaperBoy',V+'paperboy'],['Punch-Out',V+'punch-out'],['Sega Spider-Man',V+'spider-man-the-videogame'],['Star Wars: Return of the Jedi',V+'return-of-the-jedi'],['Tapper',V+'tapper'],['Tetris',V+'tetris'],['Track and Field',V+'track-field'],['Tron',V+'tron']]],
+  pin:['WARP ZONE PINBALL',[['Dr Dude',P+'dr-dude'],["William's Earthshaker!",P+'earthshaker'],["Gilligan's Island",P+'gilligans-island'],['High Roller Casino',P+'high-roller-casino'],['Roadshow',P+'red-teds-road-show'],['Star Trek',P+'star-trek-pro'],["William's Base Hit",P+'base-hit--williams']]]
+};
+const SP = [
+  ['X-Men (6 Player)','Konami · 1992','Six players, one cabinet. Grab five friends.',V+'x-men','arcade%20machine%202.png'],
+  ['TMNT: Turtles in Time','Konami · 1991','Four-player time-traveling turtle brawler.',V+'teenage-mutant-ninja-turtles-turtles-in-time',''],
+  ['Daytona USA','Sega · 1994','The legendary sit-down racer.',V+'daytona-usa',''],
+  ['Galaga','Namco · 1981','Capture, rescue, double your firepower.',V+'galaga',''],
+  ['Godzilla','Sega Pinball · 1998','King of the Monsters, on a playfield.',P+'godzilla',''],
+  ["Red & Ted's Road Show",'Williams · 1994','Talking-head pinball road trip.',P+'red-teds-road-show','']
+];
+document.getElementById('spots').innerHTML = SP.map(([n,m,d,u,img]) => `
+  <a class="spot" href="${u}" target="_blank" rel="noopener">
+    <div class="spot-img${img?'':' noimg'}">${img?`<img src="${img}" alt="${n} arcade cabinet" loading="lazy">`:''}<span class="spot-fallback">${n}</span></div>
+    <div class="spot-body"><h3>${n}</h3><div class="spot-meta">${m}</div><p>${d}</p><span class="spot-cta">VIEW ON ARCADE-MUSEUM ▶</span></div>
+  </a>`).join('');
+const list = document.getElementById('list');
+list.innerHTML = Object.entries(Z).map(([k,[title,games]]) => `
+  <div class="zone" data-zone="${k}"><h3>${title} <span style="color:#666">(${games.length})</span></h3><div class="games">
+  ${games.map(([n,id]) => { const pin = k==='pin'||k==='other'; const href = id || null;
+    return href ? `<a class="game${pin?' pin':''}" href="${href}" target="_blank" rel="noopener">${n}</a>` : `<span class="game${pin?' pin':''}">${n}</span>`; }).join('')}
+  </div></div>`).join('');
+let zone = 'all';
+const apply = () => { const q = document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.zone').forEach(z => { const show = zone==='all'||z.dataset.zone===zone; let any=false;
+    z.querySelectorAll('.game').forEach(g => { const hit = g.textContent.toLowerCase().includes(q); g.classList.toggle('hide',!hit); any ||= hit; });
+    z.style.display = show && any ? '' : 'none'; }); };
+document.getElementById('search').addEventListener('input', apply);
+document.querySelectorAll('.filters button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.filters button').forEach(o => o.classList.remove('on')); b.classList.add('on'); zone = b.dataset.z; apply(); });
+</script>
+<script src="script.js"></script>
+</body>
+</html>
