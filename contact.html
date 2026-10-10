@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="icon" href="playerschoicenewlogo.png">
+<link rel="stylesheet" href="style.css">
+<title>Contact | Player's Choice Myrtle Beach — Buy, Sell, Trade</title>
+<meta name="description" content="Trading? Selling? Buying? Contact Player's Choice in the Myrtle Beach Mall. Call 843-272-0268 or email Playerschoicenmb@gmail.com.">
+<meta name="theme-color" content="#07060f">
+<link rel="canonical" href="https://www.playerschoicenmb.com/contact">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Player's Choice">
+<meta property="og:title" content="Contact | Player's Choice Myrtle Beach — Buy, Sell, Trade">
+<meta property="og:description" content="Trading? Selling? Buying? Contact Player's Choice in the Myrtle Beach Mall. Call 843-272-0268 or email Playerschoicenmb@gmail.com.">
+<meta property="og:url" content="https://www.playerschoicenmb.com/contact">
+<meta property="og:image" content="https://www.playerschoicenmb.com/storefront2.jpg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body data-page="contact">
+<main>
+  <section class="grid2" style="margin-top:20px">
+    <div class="qs"><span>TRADING?</span><span>SELLING?</span><span>BUYING?</span></div>
+    <div class="panel">
+      <p style="font-size:28px">Our inventory is always changing! If you're looking for something specific, ask us! We will provide fast responses with attached photos and descriptions.</p>
+    </div>
+  </section>
+
+  <section class="grid2" style="align-items:start">
+    <div class="panel yellow">
+      <h2>PLAYER INFO</h2>
+      <ul class="info">
+        <li><b>MON–SAT</b> 10am to 7pm</li>
+        <li><b>SUN</b> 12pm to 6pm</li>
+        <li><b>TEL</b> <a href="tel:8432720268">843-272-0268</a></li>
+        <li><b>EMAIL</b> <a href="mailto:Playerschoicenmb@gmail.com">Playerschoicenmb@gmail.com</a></li>
+        <li><b>WHERE</b> 10177 N Kings Hwy, Myrtle Beach, SC 29572 · Myrtle Beach Mall</li>
+      </ul>
+      <a class="btn" style="margin-top:18px" href="tel:8432720268">Call Now</a>
+    </div>
+    <div class="panel red">
+      <h2>SEND A MESSAGE</h2>
+      <form id="f">
+        <label for="n">NAME *</label><input id="n" required autocomplete="name">
+        <label for="e">EMAIL *</label><input id="e" type="email" required autocomplete="email">
+        <label for="m">MESSAGE</label><textarea id="m" placeholder="> What are you looking for?_"></textarea>
+        <button class="btn red" style="margin-top:20px" type="submit">SEND ▶</button>
+      </form>
+    </div>
+  </section>
+</main>
+<script>
+/* Opens the visitor's email app pre-filled. To receive submissions directly instead,
+   swap this for a form service (Formspree, Netlify Forms, etc.). */
+document.getElementById('f').addEventListener('submit', e => {
+  e.preventDefault();
+  const n = document.getElementById('n').value, em = document.getElementById('e').value, m = document.getElementById('m').value;
+  location.href = 'mailto:Playerschoicenmb@gmail.com?subject=' + encodeURIComponent('Website message from ' + n) +
+    '&body=' + encodeURIComponent(m + '\n\n— ' + n + ' (' + em + ')');
+});
+</script>
+<script src="script.js"></script>
+</body>
+</html>

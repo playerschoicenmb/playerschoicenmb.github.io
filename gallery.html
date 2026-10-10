@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="icon" href="playerschoicenewlogo.png">
+<link rel="stylesheet" href="style.css">
+<title>Gallery | Player's Choice Myrtle Beach</title>
+<meta name="description" content="Videos and photos from inside Player's Choice in the Myrtle Beach Mall. Follow us on Instagram @playerschoicemb.">
+<meta name="theme-color" content="#07060f">
+<link rel="canonical" href="https://www.playerschoicenmb.com/gallery">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Player's Choice">
+<meta property="og:title" content="Gallery | Player's Choice Myrtle Beach">
+<meta property="og:description" content="Videos and photos from inside Player's Choice in the Myrtle Beach Mall. Follow us on Instagram @playerschoicemb.">
+<meta property="og:url" content="https://www.playerschoicenmb.com/gallery">
+<meta property="og:image" content="https://www.playerschoicenmb.com/storefront2.jpg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body data-page="gallery">
+<main>
+  <section class="hero">
+    <h1>GALLERY</h1>
+    <p class="sub">Follow us on Instagram! <a style="color:var(--red)" href="https://www.instagram.com/playerschoicemb/?hl=en" target="_blank" rel="noopener">@playerschoicemb</a></p>
+  </section>
+
+  <section>
+    <h2 style="text-align:center">FRESH FROM THE FLOOR</h2>
+    <div class="grid2">
+      <figure class="ph tall"><img src="gamestock1.jpg" alt="Glass case full of Nintendo 64 games under a rack of anime figures" loading="lazy"><figcaption>N64 CASE + FIGURE WALL</figcaption></figure>
+      <figure class="ph tall"><img src="arcade4.jpg" alt="Pinball row, TMNT Turtles in Time cabinet and racing seats" loading="lazy"><figcaption>PINBALL ROW + TURTLES IN TIME</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2 style="text-align:center">STORE VIDEOS</h2>
+    <p class="note" style="text-align:center;margin-bottom:20px">Click a video to play it.</p>
+    <div class="gal" id="gal"></div>
+    <p style="text-align:center;margin-top:28px">
+      <a class="btn pink" href="https://www.instagram.com/playerschoicemb/?hl=en" target="_blank" rel="noopener">More on Instagram ▶</a>
+      <a class="btn red" href="https://www.youtube.com/@PlayersChoiceMB/shorts" target="_blank" rel="noopener">More on YouTube ▶</a>
+    </p>
+  </section>
+</main>
+
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Video">
+  <div class="lb-box">
+    <div class="lb-media" id="lbMedia"></div>
+    <div class="lb-side">
+      <div class="lb-top"><span>📷 playerschoicemb</span><button id="lbClose" aria-label="Close">✕</button></div>
+      <div class="lb-nav"><button id="lbPrev" aria-label="Previous">◀</button><span id="lbCount"></span><button id="lbNext" aria-label="Next">▶</button></div>
+      <p class="lb-cap" id="lbCap"></p>
+      <div class="lb-date" id="lbDate"></div>
+      <a class="btn pink" id="lbLink" target="_blank" rel="noopener">Open Original</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===================== EDIT HERE =====================
+   Paste a link into each url:'' to make that video play on the site.
+   Works with:
+     Instagram  -> https://www.instagram.com/reel/XXXXXXXX/   (or /p/XXXXXXXX/)
+     YouTube    -> https://www.youtube.com/shorts/XXXXXXXXXXX
+   Get it from: the video > Share > Copy link.
+   Videos without a link open the Instagram profile instead.
+   thumb is optional (any image file in the repo).
+======================================================= */
+const PROFILE = 'https://www.instagram.com/playerschoicemb/?hl=en';
+const VIDEOS = [
+  {url:'', thumb:'ig-250th.jpg', date:'July 2, 2026', cap:"Happy 250th, everyone! Washington would've wanted you to play more games."},
+  {url:'', cap:'Whatnot SUNDAY at 4pm EST!'},
+  {url:'', cap:'ROLAND: "Go attract new customers!"'},
+  {url:'', cap:'That One Customer at 9:59am'},
+  {url:'', cap:'pov: a customer is extremely confused'},
+  {url:'', cap:'She Never Gets What She Wants 😭'},
+  {url:'', cap:'How the Nicest People Look'},
+  {url:'', cap:'Having A Worse Day'},
+  {url:'', cap:'What you say to customers in the way'},
+  {url:'', cap:'NEW MACHINE! Pokémon Catch'},
+  {url:'', cap:'Just A Buncha GameBoys'},
+  {url:'', cap:'Creepy When Closed'}
+];
+
+function embed(u){
+  if(!u) return null; let m;
+  if((m=u.match(/instagram\.com\/(?:[^/]+\/)?(p|reel|reels|tv)\/([A-Za-z0-9_-]+)/))) return `https://www.instagram.com/${m[1]==='reels'?'reel':m[1]}/${m[2]}/embed`;
+  if((m=u.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/))) return `https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0`;
+  return null;
+}
+
+const gal = document.getElementById('gal');
+gal.innerHTML = VIDEOS.map((v,i) => {
+  const inner = `${v.thumb?`<img src="${v.thumb}" alt="" loading="lazy">`:`<span class="ph-icon">▶<br><small>CLIP ${String(i+1).padStart(2,'0')}</small></span>`}
+    <span class="play"></span><span class="cap">${v.cap}</span>`;
+  return embed(v.url)
+    ? `<button class="tile${v.thumb?'':' empty'}" data-i="${i}" aria-label="Play: ${v.cap}">${inner}</button>`
+    : `<a class="tile${v.thumb?'':' empty'}" href="${v.url||PROFILE}" target="_blank" rel="noopener" aria-label="${v.cap} (opens Instagram)">${inner}</a>`;
+}).join('');
+
+const playable = VIDEOS.map((v,i)=>embed(v.url)?i:-1).filter(i=>i>=0);
+const lb = document.getElementById('lb'); let pos = 0;
+function show(p){
+  if(!playable.length) return;
+  pos = (p + playable.length) % playable.length; const v = VIDEOS[playable[pos]];
+  document.getElementById('lbMedia').innerHTML = `<iframe src="${embed(v.url)}" title="Video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+  document.getElementById('lbCap').textContent = v.cap;
+  document.getElementById('lbDate').textContent = v.date || '';
+  document.getElementById('lbCount').textContent = `${pos+1} / ${playable.length}`;
+  document.getElementById('lbLink').href = v.url;
+  lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+}
+const close = () => { lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.getElementById('lbMedia').innerHTML=''; };
+gal.addEventListener('click', e => { const t = e.target.closest('button.tile'); if (t) show(playable.indexOf(+t.dataset.i)); });
+document.getElementById('lbPrev').onclick = () => show(pos-1);
+document.getElementById('lbNext').onclick = () => show(pos+1);
+document.getElementById('lbClose').onclick = close;
+lb.addEventListener('click', e => { if (e.target === lb) close(); });
+addEventListener('keydown', e => { if (!lb.classList.contains('open')) return;
+  if (e.key==='Escape') close(); if (e.key==='ArrowLeft') show(pos-1); if (e.key==='ArrowRight') show(pos+1); });
+</script>
+<script src="script.js"></script>
+</body>
+</html>
