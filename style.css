@@ -254,10 +254,9 @@ p.center,.hero p{margin-left:auto;margin-right:auto}
 
 
 /* ===== SOCIABLEKIT TIKTOK FEED ===== */
-.social-feed-section{max-width:1200px;margin-left:auto;margin-right:auto}
-.social-feed-note{margin:0 auto 22px}.social-feed-note a{color:var(--yellow);text-decoration:none}.social-feed-note a:hover{text-decoration:underline}
+.social-feed-note{margin:0 auto 22px}.social-feed-note a{color:var(--yellow)}
 .social-feed-frame{position:relative;min-height:480px;padding:22px;background:rgba(8,7,20,.94);border:5px solid #000;outline:4px solid var(--pink);outline-offset:-12px;box-shadow:10px 10px 0 #000;overflow:hidden}
-.social-feed-frame::before{content:"LIVE FEED";position:absolute;top:0;right:0;z-index:2;padding:7px 10px;background:#000;color:var(--cyan);font-family:var(--pixel);font-size:8px;letter-spacing:1px}
-.sk-tiktok-feed{width:100%;min-height:430px;position:relative;z-index:1}.sk-tiktok-feed iframe{display:block;width:100%!important;max-width:100%;border:0!important;background:transparent}
-.social-feed-actions{margin:28px auto 0}.social-feed-fallback{padding:80px 25px;text-align:center;margin:auto;color:var(--white)}.social-feed-fallback a{color:var(--yellow)}
+.social-feed-frame::before{content:"LIVE FEED";position:absolute;top:0;right:0;z-index:2;padding:7px 10px;background:#000;color:var(--cyan);font-family:var(--pixel);font-size:8px}
+.sk-tiktok-feed{width:100%;min-height:430px;position:relative;z-index:1}.sk-tiktok-feed iframe{display:block;width:100%!important;max-width:100%;border:0!important}
+.social-feed-actions{margin:28px auto 0}.social-feed-fallback{padding:80px 25px;text-align:center;margin:auto}.social-feed-fallback a{color:var(--yellow)}
 @media(max-width:700px){.social-feed-frame{min-height:380px;padding:15px;outline-offset:-9px}.sk-tiktok-feed{min-height:340px}}
