@@ -1,0 +1,21 @@
+PLAYER'S CHOICE LIVE GOOGLE SHEETS INVENTORY SETUP
+
+1. Upload inventory-template.xlsx to Google Drive and open it as a Google Sheet.
+2. Rename the public worksheet tab to Public Inventory.
+3. In Google Sheets choose File > Share > Publish to web.
+4. In the first dropdown choose Public Inventory, not Entire document.
+5. In the format dropdown choose Comma-separated values (.csv).
+6. Click Publish and copy the generated URL.
+7. Open inventory-config.js.
+8. Replace PASTE_PUBLISHED_GOOGLE_SHEETS_CSV_URL_HERE with that complete URL. Keep the quotation marks.
+9. Upload inventory-config.js and inventory.js to the repository.
+10. In inventory.html, make sure inventory-config.js loads before inventory.js as shown in inventory-html-patch.txt.
+
+AFTER THIS ONE-TIME SETUP
+Employees only edit the Google Sheet. The website reloads the sheet whenever the Inventory page opens, whenever a visitor returns to the browser tab, and every five minutes while the page remains open.
+
+PRIVACY
+Only publish the Public Inventory tab. Do not put supplier cost, profit margin, customer data, security details, or internal notes in the published tab.
+
+FALLBACK
+Until a real Google URL is pasted into inventory-config.js, the demo automatically continues using inventory.csv.
