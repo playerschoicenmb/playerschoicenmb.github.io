@@ -1,3 +1,0 @@
-<!-- Place these two lines immediately before </body> in inventory.html. -->
-<script src="inventory-config.js?v=32"></script>
-<script src="inventory.js?v=32"></script>
